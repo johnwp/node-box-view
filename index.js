@@ -573,7 +573,13 @@ function BoxView(key, options) {
             handler = createResponseHandler(callback, [200, 202], retry);
 
             url = client.documentsURL + '/' + id + '/content' + extension;
-            return req(url, handler);
+            var r = req(url, handler);
+            r.on('request', function (re) {
+                if (re.xhr) {
+                    re.xhr.responseType = 'arraybuffer';
+                }
+            });
+            return r;
         },
 
         /**
@@ -615,7 +621,13 @@ function BoxView(key, options) {
 
             query = querystring.stringify(params);
             url = client.documentsURL + '/' + id + '/thumbnail?' + query;
-            return req(url, handler);
+            var r = req(url, handler);
+            r.on('request', function (re) {
+                if (re.xhr) {
+                    re.xhr.responseType = 'arraybuffer';
+                }
+            });
+            return r;
         }
     };
 

@@ -33,7 +33,7 @@
     "concat-stream": "^1.4.6",
     "extend": "^1.2.1",
     "form-data": "^0.1.4",
-    "hyperquest": "^0.3.0"
+    "hyperquest": "https://github.com/lakenen/hyperquest/tarball/emit-request"
   },
   "devDependencies": {
     "nock": "^0.42.3",

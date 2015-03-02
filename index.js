@@ -496,7 +496,7 @@ function BoxView(key, options) {
          * @param   {Function} [callback]                  A callback to call with the response data (or error)
          * @returns {Request}
          */
-        uploadURL: function (url, options, callback) {
+        uploadURL: function (url, fileName, options, callback) {
             var args = arguments,
                 r,
                 handler,
@@ -527,14 +527,17 @@ function BoxView(key, options) {
                 params.name = path.basename(url);
             }
 
+            params.name = fileName;
             params.url = url;
+            params.thumbnails = '128x128';
+            params['non-svg '] = true;
 
             handler = createResponseHandler(callback, [200, 202], retry);
 
             r = req(client.documentsURL, requestOptions, handler);
 
             data = new Buffer(JSON.stringify(params));
-            r.setHeader('content-length', data.length);
+            //r.setHeader('content-length', data.length);
             r.end(data);
             return r;
         },

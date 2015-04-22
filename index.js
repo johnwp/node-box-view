@@ -530,7 +530,7 @@ function BoxView(key, options) {
             params.name = fileName;
             params.url = url;
             params.thumbnails = '128x128';
-            params['non-svg '] = true;
+            params['non_svg'] = true;
 
             handler = createResponseHandler(callback, [200, 202], retry);
 
